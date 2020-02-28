@@ -9,6 +9,7 @@ import UIKit
 
 class PlayViewController: UIViewController {
 
+    @IBOutlet weak var testLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 

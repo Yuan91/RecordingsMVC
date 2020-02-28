@@ -7,12 +7,44 @@
 
 import UIKit
 
+fileprivate extension String{
+    static let showRecorder = "showRecorder"
+    static let showPlayer = "showPlayer"
+    static let showFolder = "showFolder"
+}
+
 class FolderViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
        
+    }
+    
+    // MARK: - Navigation && Action
+    @IBAction func createNewFolder(_ sender: Any) {
+    }
+    
+    @IBAction func createNewRecording(_ sender: Any) {
+        performSegue(withIdentifier: .showRecorder, sender: sender)
+    }
+    
+    //该方法的执行,会在 tableView-didSelecetRowAtIndexPath 之前
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return  }
+        if identifier == .showFolder {
+            
+        }
+        else if identifier == .showPlayer{
+            
+        }
+        else if identifier == .showRecorder{
+//            guard let recordVc = segue.destination as? RecordViewController else { return }
+        }
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 
     // MARK: - Table view data source
@@ -27,11 +59,16 @@ class FolderViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        //FolderCell/RecordingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath)
         return cell
     }
     
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -67,14 +104,8 @@ class FolderViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+    
+    
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
