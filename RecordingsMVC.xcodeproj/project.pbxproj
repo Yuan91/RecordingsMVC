@@ -16,7 +16,13 @@
 		816DBB4D23EBC3DD006F883A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 816DBB4C23EBC3DD006F883A /* README.md */; };
 		816DBB5E23F3A75D006F883A /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816DBB5D23F3A75D006F883A /* FolderViewController.swift */; };
 		816DBB6023F3A8DA006F883A /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816DBB5F23F3A8DA006F883A /* PlayViewController.swift */; };
-		81FF910824091D61005C2A59 /* Language.md in Resources */ = {isa = PBXBuildFile; fileRef = 81FF910724091D61005C2A59 /* Language.md */; };
+		817788A1240A3A9D001DF3FA /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817788A0240A3A9D001DF3FA /* Recorder.swift */; };
+		817788A3240A4105001DF3FA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817788A2240A4105001DF3FA /* Utilities.swift */; };
+		817788A5240A6475001DF3FA /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817788A4240A6475001DF3FA /* Player.swift */; };
+		817788A7240AAA21001DF3FA /* Floder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817788A6240AAA21001DF3FA /* Floder.swift */; };
+		817788A9240AACE6001DF3FA /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817788A8240AACE6001DF3FA /* Record.swift */; };
+		817788AB240AADE2001DF3FA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817788AA240AADE2001DF3FA /* Item.swift */; };
+		817788AD240AB851001DF3FA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817788AC240AB851001DF3FA /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +37,13 @@
 		816DBB4C23EBC3DD006F883A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		816DBB5D23F3A75D006F883A /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		816DBB5F23F3A8DA006F883A /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
-		81FF910724091D61005C2A59 /* Language.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Language.md; sourceTree = "<group>"; };
+		817788A0240A3A9D001DF3FA /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Recorder.swift; path = RecordingsMVC/Recorder.swift; sourceTree = SOURCE_ROOT; };
+		817788A2240A4105001DF3FA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = RecordingsMVC/Utilities.swift; sourceTree = SOURCE_ROOT; };
+		817788A4240A6475001DF3FA /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Player.swift; path = RecordingsMVC/Player.swift; sourceTree = SOURCE_ROOT; };
+		817788A6240AAA21001DF3FA /* Floder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Floder.swift; path = RecordingsMVC/Floder.swift; sourceTree = SOURCE_ROOT; };
+		817788A8240AACE6001DF3FA /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Record.swift; path = RecordingsMVC/Record.swift; sourceTree = SOURCE_ROOT; };
+		817788AA240AADE2001DF3FA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Item.swift; path = RecordingsMVC/Item.swift; sourceTree = SOURCE_ROOT; };
+		817788AC240AB851001DF3FA /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Store.swift; path = RecordingsMVC/Store.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,10 @@
 		8162F7A62408CDF000C1F8BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				817788AA240AADE2001DF3FA /* Item.swift */,
+				817788A6240AAA21001DF3FA /* Floder.swift */,
+				817788A8240AACE6001DF3FA /* Record.swift */,
+				817788AC240AB851001DF3FA /* Store.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -65,6 +81,9 @@
 		8162F7A72408CDF900C1F8BA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				817788A0240A3A9D001DF3FA /* Recorder.swift */,
+				817788A2240A4105001DF3FA /* Utilities.swift */,
+				817788A4240A6475001DF3FA /* Player.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -72,7 +91,6 @@
 		816DBB2C23EBC36F006F883A = {
 			isa = PBXGroup;
 			children = (
-				81FF910724091D61005C2A59 /* Language.md */,
 				816DBB4C23EBC3DD006F883A /* README.md */,
 				816DBB3723EBC36F006F883A /* RecordingsMVC */,
 				816DBB3623EBC36F006F883A /* Products */,
@@ -161,7 +179,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				816DBB4523EBC371006F883A /* LaunchScreen.storyboard in Resources */,
-				81FF910824091D61005C2A59 /* Language.md in Resources */,
 				816DBB4223EBC371006F883A /* Assets.xcassets in Resources */,
 				816DBB4D23EBC3DD006F883A /* README.md in Resources */,
 				816DBB4023EBC36F006F883A /* Main.storyboard in Resources */,
@@ -175,9 +192,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817788A7240AAA21001DF3FA /* Floder.swift in Sources */,
 				816DBB5E23F3A75D006F883A /* FolderViewController.swift in Sources */,
+				817788A9240AACE6001DF3FA /* Record.swift in Sources */,
+				817788AD240AB851001DF3FA /* Store.swift in Sources */,
 				816DBB6023F3A8DA006F883A /* PlayViewController.swift in Sources */,
+				817788A3240A4105001DF3FA /* Utilities.swift in Sources */,
 				8162F7A42408C46E00C1F8BA /* RecordViewController.swift in Sources */,
+				817788AB240AADE2001DF3FA /* Item.swift in Sources */,
+				817788A5240A6475001DF3FA /* Player.swift in Sources */,
+				817788A1240A3A9D001DF3FA /* Recorder.swift in Sources */,
 				816DBB3923EBC36F006F883A /* AppDelegate.swift in Sources */,
 				816DBB3B23EBC36F006F883A /* SceneDelegate.swift in Sources */,
 			);
