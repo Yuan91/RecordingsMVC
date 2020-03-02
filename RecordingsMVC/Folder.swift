@@ -15,11 +15,11 @@ class Folder: Item {
      
     override init(name: String, path: String) {
         super.init(name: name, path: path)
+        Store.createFloder(folderName: name, path: path)
         items = contentsOfFolder() ?? [Item]()
     }
     
     func createFloder(name: String) {
-        Store.createFloder(folderName: name, path: fullPath)
         let folder = Folder(name: name, path: fullPath)
         items?.append(folder)
         folderContentChanged()

@@ -35,6 +35,10 @@ class FolderViewController: UITableViewController {
         
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func handleChanged(){
         tableView.reloadData()
     }
@@ -43,6 +47,18 @@ class FolderViewController: UITableViewController {
     @IBAction func createNewFolder(_ sender: Any) {
         modelTextAlert(title: "Create Folder", accept: "Create", placeholder: "Input folder name") { (string) in
             guard let folderName = string else { return }
+            /**
+             这个地方假如没有明确的model层 那么代码将是这样的
+             let folder = Folder()
+             folder.items.append(folder)
+             Store.createFolder
+             tableView.reloadData
+             
+             存在以下问题:
+             ①代码复用性低. 一个很可能会多次出现的创建文件夹场景,需要写很多重复代码
+             ②不符合MVC设计原则. Model层的很多操作,放到了ViewController中来实现
+             ③数组操作可能失败,直接reloaData 可能失败
+             */
             self.folder?.createFloder(name: folderName)
         }
     }

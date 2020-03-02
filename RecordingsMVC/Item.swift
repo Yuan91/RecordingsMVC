@@ -31,6 +31,12 @@ import UIKit
  优点很明显结构清晰,读取数据方便.
  缺点的也很明显:需要频繁的进行IO操作,读取文件目录以及内容.文件重名会被覆盖
 */
+/**
+ 反思:
+ 1.像Store 层 和 Folder 层的一些操作,还是需要错误处理的,至少需要返回一个bool表示操作是否成功
+ 2.FolderViewController的folder属性 不必设置为可选的.
+ 因为每一个文件夹界面都会有一个folder对象,所以可以定义个初始化方法 init(folder:Folder)
+ */
 class Item: NSObject {
     var name: String
     var path: String
