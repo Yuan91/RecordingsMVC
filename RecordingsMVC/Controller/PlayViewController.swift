@@ -17,12 +17,13 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     
     var audioPlayer: Player?
+    var record: Record?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let path = NSHomeDirectory() + "/test.m4a"
+        let path = record!.path + "/\(record!.name)"
         let url = URL(string: path)!
         
         audioPlayer = Player(url: url, update: { [weak self] (time) in

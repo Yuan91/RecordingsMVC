@@ -13,6 +13,7 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     
     var audioRecorder: Recorder?
+    var folder: Folder?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +23,7 @@ class RecordViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(NSHomeDirectory())
-        let dir = NSHomeDirectory() + "/test.m4a"
+        let dir = folder!.fullPath + "/\(String.placeholderName)"
         let url = URL(string: dir)!
         
         audioRecorder = Recorder(url: url, update: { (timeInterval) in
@@ -42,9 +42,12 @@ class RecordViewController: UIViewController {
         audioRecorder?.stop()
         modelTextAlert(title: .saveRecording, accept: .save,  placeholder: .nameForRecording) { string in
             if let name = string {
-                print("待处理操作")
+                Store.renameFile(oldName: .placeholderName, newName: name, folderPath: self.folder!.fullPath)
+                self.folder?.addRecord(name: name)
             }
-            
+            else{
+                Store.deleteFileAtPath(self.audioRecorder!.url.absoluteString)
+            }
             self.dismiss(animated: true)
         }
     }
@@ -57,4 +60,5 @@ fileprivate extension String{
     static let saveRecording = NSLocalizedString("Save Record", comment: "")
     static let save = NSLocalizedString("Save", comment: "")
     static let nameForRecording = NSLocalizedString("nameForRecording", comment: "")
+    static let placeholderName = "placeholderName.m4a"
 }
