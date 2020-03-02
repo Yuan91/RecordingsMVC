@@ -13,18 +13,14 @@ class Folder: Item {
     
     var items: [Item]?
      
-    var fullPath:String{
-        return self.path + "/" + self.name
-    }
-    
     override init(name: String, path: String) {
         super.init(name: name, path: path)
         items = contentsOfFolder() ?? [Item]()
     }
     
-    func createFloder(name:String) {
+    func createFloder(name: String) {
         Store.createFloder(folderName: name, path: fullPath)
-        let folder = Folder(name: name, path: self.path)
+        let folder = Folder(name: name, path: fullPath)
         items?.append(folder)
         folderContentChanged()
     }
@@ -36,9 +32,12 @@ class Folder: Item {
         folderContentChanged()
     }
     
-    func deleteItem() {
-        
-        folderContentChanged()
+    func deleteItem(_ item:Item) {
+        if let index = items?.firstIndex(of: item) {
+            Store.deleteFileAtPath(item.fullPath)
+            items?.remove(at: Int(index))
+            folderContentChanged()
+        }
     }
     
     func folderContentChanged() {

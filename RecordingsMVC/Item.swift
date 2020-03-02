@@ -32,9 +32,13 @@ import UIKit
  缺点的也很明显:需要频繁的进行IO操作,读取文件目录以及内容.文件重名会被覆盖
 */
 class Item: NSObject {
-    var name:String
-    var path:String
-    init(name:String, path:String){
+    var name: String
+    var path: String
+    var fullPath: String {
+        return self.path + "/" + self.name
+    }
+    
+    init(name: String, path: String){
         self.name = name
         self.path = path
     }

@@ -17,7 +17,11 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     
     var audioPlayer: Player?
-    var record: Record?
+    var record: Record? {
+        didSet {
+            navigationItem.title = record?.name
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

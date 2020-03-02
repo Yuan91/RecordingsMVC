@@ -15,10 +15,22 @@ fileprivate extension String{
 
 class FolderViewController: UITableViewController {
     
-    var folder: Folder?
+    var folder: Folder? {
+        didSet{
+            if folder?.name == String.rootFolderName {
+                navigationItem.title = "Recordings"
+            }
+            else{
+                navigationItem.title = folder?.name
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftItemsSupplementBackButton = true
+        editButtonItem.tintColor = .darkGray
+        navigationItem.leftBarButtonItem = editButtonItem
         NotificationCenter.default.addObserver(self, selector: #selector(handleChanged), name: folderContentChangedNotification, object: nil)
         
     }
@@ -87,6 +99,14 @@ class FolderViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let item = folder?.items?[indexPath.row] else { return }
+        folder?.deleteItem(item)
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
