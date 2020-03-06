@@ -38,20 +38,7 @@ import UIKit
  因为每一个文件夹界面都会有一个folder对象,所以可以定义个初始化方法 init(folder:Folder)
  */
 class Item: NSObject {
-    var name: String
-    var path: String
-    var fullPath: String {
-        return self.path + "/" + self.name
-    }
-    
-    init(name: String, path: String){
-        self.name = name
-        self.path = path
-    }
-    
-    var isFolder: Bool {
-        return self is Folder
-    }
+   
     
     
 }

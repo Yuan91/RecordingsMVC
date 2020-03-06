@@ -12,12 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
           splitViewController?.preferredDisplayMode = .allVisible
           splitViewController?.delegate = self
           let leftNav = splitViewController?.viewControllers.first as? UINavigationController
-          let folder = leftNav?.viewControllers.first as? FolderViewController
-          if let rootvc = folder {
-            let rootFolder = Folder(name: .rootFolderName, path: .rootPath)
-            rootvc.folder = rootFolder
-          }
-        
+          let folder = leftNav?.viewControllers.first as? FolderViewController         
           return true
       }
       

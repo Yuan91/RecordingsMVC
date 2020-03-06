@@ -17,17 +17,13 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     
     var audioPlayer: Player?
-    var record: Record? {
-        didSet {
-            navigationItem.title = record?.name
-        }
-    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let path = record!.path + "/\(record!.name)"
+        let path = "testPath"
         let url = URL(string: path)!
         
         audioPlayer = Player(url: url, update: { [weak self] (time) in
