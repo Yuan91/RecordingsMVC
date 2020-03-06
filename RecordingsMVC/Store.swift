@@ -17,6 +17,7 @@ final class Store {
     let placeholder: URL?
     private(set) var rootFolder: Folder
     
+    /// 初始化
     init(url: URL?) {
         self.baseURL = url
         self.placeholder = nil
@@ -32,6 +33,28 @@ final class Store {
         }
         
         rootFolder.store = self
+    }
+    
+    /// 获取文件路径
+    func fileURL(_ recording: Recording) -> URL? {
+        return baseURL?.appendingPathComponent(recording.uuid.uuidString + ".m4a") ?? placeholder
+    }
+    
+    /// 格式化数据存储到本地
+    func save(_ notifying: Item, userInfo: [AnyHashable: Any]) {
+        if let url = baseURL,let data = try? JSONEncoder().encode(rootFolder) {
+            try! data.write(to: url.appendingPathComponent(.storeLocation))
+        }
+        NotificationCenter.default.post(name: Store.changedNotification,
+                                        object: notifying,
+                                        userInfo: userInfo)
+    }
+    
+    /// 删除文件
+    func deleteFile(for recording:Recording) {
+        if let url = fileURL(recording), url != placeholder {
+            _ = try! FileManager.default.removeItem(at: url)
+        }
     }
 }
 

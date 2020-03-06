@@ -13,6 +13,8 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     
     var audioRecorder: Recorder?
+    var folder: Folder?
+    var recording = Recording(name: "", uuid: UUID())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +24,8 @@ class RecordViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let dir = "testDir"
-        let url = URL(string: dir)!
+        guard let url = folder?.store?.fileURL(recording) else { return }
+        print(url.absoluteString)
         
         audioRecorder = Recorder(url: url, update: { (timeInterval) in
             if let t = timeInterval{
@@ -34,6 +36,10 @@ class RecordViewController: UIViewController {
                 self.dismiss(animated: true)
             }
         })
+        
+        if audioRecorder == nil {
+            self.dismiss(animated: true)
+        }
     }
     
 
@@ -41,10 +47,11 @@ class RecordViewController: UIViewController {
         audioRecorder?.stop()
         modelTextAlert(title: .saveRecording, accept: .save,  placeholder: .nameForRecording) { string in
             if let name = string {
-                print(name)
+                self.recording.setName(name)
+                self.folder?.add(self.recording)
             }
             else{
-                
+                self.recording.deleted()
             }
             self.dismiss(animated: true)
         }

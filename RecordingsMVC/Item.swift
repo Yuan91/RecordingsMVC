@@ -46,6 +46,7 @@ class Item {
     let uuid: UUID
     private(set) var name: String
     //每一个item 都弱引用一个 Store 对象,便于进行文件操作?
+    //目前为止,项目内所有的item引用的Store对象都是同一个
     weak var store: Store?
     weak var parent: Folder? {
         didSet {
@@ -64,6 +65,16 @@ class Item {
         return self is Folder
     }
     
+    func setName(_ newName: String) {
+        name = newName
+    }
+    
+    func deleted() {
+        parent = nil
+    }
+    
+    
+    
     // MARK: --------
     //状态恢复
     var uuidPath: [UUID] {
@@ -77,4 +88,14 @@ class Item {
         guard let first = path.first, first == uuid else { return nil }
         return self
     }
+}
+
+extension Item {
+    static let changeReasonKey = "reason"
+    static let newValueKey = "newValue"
+    static let oldValueKey = "oldValue"
+    static let parentFolderKey = "parentFolder"
+    static let renamed = "renamed"
+    static let added = "added"
+    static let removed = "removed"
 }

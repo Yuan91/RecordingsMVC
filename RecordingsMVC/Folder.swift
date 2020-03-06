@@ -20,8 +20,30 @@ class Folder: Item, Codable {
         super.init(name: name, uuid: uuid)
     }
     
+    // MARK: ---logic ---
+    /**
+     一个合理的addItem 操作:
+     1.(model 层)外部完成的Item处理及自定义,如修改名称
+     2.model 层,将item 添加到数组,并进行排序等操作
+     3.model 层调用 Store 层方法,存储数据,并把一些变更的信息传递过去
+     4.Store 层存储数据,发送通知
+     */
+    func add(_ item: Item) {
+        assert(contents.contains(where: { $0 === item }) == false )
+        contents.append(item)
+        contents.sort { return $0.name < $1.name }
+        let newIndex = contents.firstIndex(where: { $0 === item })!
+        //将item 添加到folder 的时候才有 parent;添加录音 setName 时,就利用这一特性,拦截了部分操作
+        item.parent = self
+        let userInfo: [AnyHashable:Any] = [
+                        Item.changeReasonKey:Item.added,
+                        Item.newValueKey:newIndex,
+                        Item.parentFolderKey:self]
+        store?.save(item, userInfo: userInfo)
+    }
     
-    // MARK --------
+    
+    // MARK: --- 序列化 ---
     enum FolderKeys: CodingKey { case name, uuid, contents }
     enum FolderOrRecording: CodingKey { case folder, recording }
     

@@ -12,9 +12,14 @@ class Recording: Item, Codable {
         super.init(name: name, uuid: uuid)
     }
     
+    //MARK: --- logic ---
+    //Recording和Folder 分别重写父类的 deleted 方法
+    override func deleted() {
+        store?.deleteFile(for: self)
+        super.deleted()
+    }
     
-    //序列化,以及状态恢复
-    // MARK:----------
+    // MARK:--- 序列化 ---
     enum RecordingKeys: CodingKey { case name, uuid }
     
     required init(from decoder: Decoder) throws {

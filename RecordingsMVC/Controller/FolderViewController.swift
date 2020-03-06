@@ -37,17 +37,30 @@ class FolderViewController: UITableViewController {
         editButtonItem.tintColor = .darkGray
         navigationItem.leftBarButtonItem = editButtonItem
         
-        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleChangeNotification(_:)),
+                                               name: Store.changedNotification,
+                                               object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
    
-    
+    @objc func handleChangeNotification(_ notification: Notification) {
+        
+        
+        tableView.reloadData()
+    }
     
     
     // MARK: - Navigation && Action
     @IBAction func createNewFolder(_ sender: Any) {
         modelTextAlert(title: "Create Folder", accept: "Create", placeholder: "Input folder name") { (string) in
-            print(string ?? "")
+            guard let folderName = string, folderName.isEmpty == false else { return }
+            let folder = Folder(name: folderName, uuid: UUID())
+            self.folder.add(folder)
         }
     }
     
@@ -66,9 +79,13 @@ class FolderViewController: UITableViewController {
            
         }
         else if identifier == .showRecorder{
-           
+            guard let recordVc = segue.destination as? RecordViewController else { return  }
+            recordVc.folder = folder
         }
         
+        //反选
+        guard let indexPath = tableView.indexPathForSelectedRow else { return  }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     // MARK: - Table view data source
