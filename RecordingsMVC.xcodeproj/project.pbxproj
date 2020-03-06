@@ -68,10 +68,10 @@
 		8162F7A62408CDF000C1F8BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				817788AA240AADE2001DF3FA /* Item.swift */,
-				817788A6240AAA21001DF3FA /* Folder.swift */,
-				817788A8240AACE6001DF3FA /* Record.swift */,
 				817788AC240AB851001DF3FA /* Store.swift */,
+				817788AA240AADE2001DF3FA /* Item.swift */,
+				817788A8240AACE6001DF3FA /* Record.swift */,
+				817788A6240AAA21001DF3FA /* Folder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

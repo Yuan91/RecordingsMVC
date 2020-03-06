@@ -11,11 +11,25 @@ fileprivate extension String{
     static let showRecorder = "showRecorder"
     static let showPlayer = "showPlayer"
     static let showFolder = "showFolder"
+    
+    static let recordings = NSLocalizedString("Recordings", comment: "Heading for the list of recorded audio items and folders.")
 }
 
 class FolderViewController: UITableViewController {
     
-   
+    var folder: Folder = Store.shared.rootFolder {
+        didSet {
+            print(oldValue)
+            tableView.reloadData()
+            //判断这个新设置的folder 是否是 rootFolder
+            if folder === folder.store?.rootFolder  {
+                title = .recordings
+            }
+            else {
+                title = folder.name
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +47,7 @@ class FolderViewController: UITableViewController {
     // MARK: - Navigation && Action
     @IBAction func createNewFolder(_ sender: Any) {
         modelTextAlert(title: "Create Folder", accept: "Create", placeholder: "Input folder name") { (string) in
-            print(string!)
+            print(string ?? "")
         }
     }
     
@@ -63,12 +77,15 @@ class FolderViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  0
+        return  folder.contents.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //RecordingCell/FolderCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath)
+        let item = folder.contents[indexPath.row]
+        let identifier = item.isFolder ? "FolderCell" : "RecordingCell"
+        let icon = item.isFolder ? "📂" : "🔊"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        cell.textLabel?.text = icon + item.name
         return cell
     }
     

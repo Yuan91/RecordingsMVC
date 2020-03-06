@@ -37,8 +37,44 @@ import UIKit
  2.FolderViewController的folder属性 不必设置为可选的.
  因为每一个文件夹界面都会有一个folder对象,所以可以定义个初始化方法 init(folder:Folder)
  */
-class Item: NSObject {
-   
+
+/**
+ 新的实现方式:
+ 1.由一个JSON 文件组织数据,所有的数据都在Libray下
+ */
+class Item {
+    let uuid: UUID
+    private(set) var name: String
+    //每一个item 都弱引用一个 Store 对象,便于进行文件操作?
+    weak var store: Store?
+    weak var parent: Folder? {
+        didSet {
+            //获取store对象引用,方便做数据存储?
+            store = parent?.store
+        }
+    }
     
+    init(name: String, uuid: UUID) {
+        self.name = name
+        self.uuid = uuid
+        self.store = nil
+    }
     
+    var isFolder: Bool {
+        return self is Folder
+    }
+    
+    // MARK: --------
+    //状态恢复
+    var uuidPath: [UUID] {
+        var path = parent?.uuidPath ?? []
+        path.append(uuid)
+        return path
+    }
+    
+    //状态恢复
+    func item(atUUIDPath path: ArraySlice<UUID>) -> Item? {
+        guard let first = path.first, first == uuid else { return nil }
+        return self
+    }
 }
