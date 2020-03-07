@@ -20,7 +20,7 @@ class Folder: Item, Codable {
         super.init(name: name, uuid: uuid)
     }
     
-    // MARK: ---logic ---
+    // MARK: --- logic ---
     /**
      一个合理的addItem 操作:
      1.(model 层)外部完成的Item处理及自定义,如修改名称
@@ -48,6 +48,32 @@ class Folder: Item, Codable {
         contents.sort { $0.name < $1.name }
         let newIndex = contents.firstIndex(where: { $0 === changedItem })!
         return (oldIndex, newIndex)
+    }
+    
+    /// 删除操作
+ /**
+     item.deleted() 这个操作很精髓
+     因为Recording和Folder 都重写了父类的 delete() 方法,
+     所以当是recording 的时候, 就调用录音的删除方法
+     当时folder 的时候,就调用Folder类重写的delete() 方法
+     */
+    
+    func deleteItem(_ item: Item) {
+        guard let index = contents.firstIndex(where: { $0 === item }) else { return }
+        item.deleted()
+        contents.remove(at: index)
+        let userInfo: [AnyHashable: Any] = [Item.changeReasonKey: Item.removed,
+                                            Item.parentFolderKey: self,
+                                            Item.oldValueKey: index]
+        store?.save(item, userInfo: userInfo)
+    }
+    
+    //循环删除当前folder 下的内容,包括录音和文件夹
+    override func deleted() {
+        for item in contents {
+            deleteItem(item)
+        }
+        super.deleted()
     }
     
     // MARK: --- 序列化 ---

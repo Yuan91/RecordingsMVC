@@ -10,9 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
           // Override point for customization after application launch.
           let splitViewController = window?.rootViewController as? UISplitViewController
           splitViewController?.preferredDisplayMode = .allVisible
-          splitViewController?.delegate = self
-          let leftNav = splitViewController?.viewControllers.first as? UINavigationController
-          let folder = leftNav?.viewControllers.first as? FolderViewController         
+          splitViewController?.delegate = self    
           return true
       }
       

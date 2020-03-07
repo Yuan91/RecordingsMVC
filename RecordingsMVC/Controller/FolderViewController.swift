@@ -19,7 +19,6 @@ class FolderViewController: UITableViewController {
     
     var folder: Folder = Store.shared.rootFolder {
         didSet {
-            print(oldValue)
             tableView.reloadData()
             //判断这个新设置的folder 是否是 rootFolder
             if folder === folder.store?.rootFolder  {
@@ -117,8 +116,8 @@ class FolderViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        guard let item = folder?.items?[indexPath.row] else { return }
-//        folder?.deleteItem(item)
+        let item = folder.contents[indexPath.row]
+        folder.deleteItem(item)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
