@@ -92,6 +92,7 @@
                     <navigationItem key="navigationItem" id="6Wx-vv-7VC"/>
                     <connections>
                         <outlet property="durationLabel" destination="43q-mM-EYI" id="azF-BL-P7m"/>
+                        <outlet property="nameLabel" destination="TPa-Ds-oAx" id="Sml-LQ-okp"/>
                         <outlet property="nameTextField" destination="330-cP-6Sv" id="H85-8O-6B8"/>
                         <outlet property="noRecordingLabel" destination="Prd-cg-3mk" id="eQa-zH-0OA"/>
                         <outlet property="playButton" destination="kl8-Zy-yo0" id="6wh-cU-2Tj"/>

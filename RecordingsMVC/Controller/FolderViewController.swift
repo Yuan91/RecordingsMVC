@@ -73,10 +73,16 @@ class FolderViewController: UITableViewController {
         guard let identifier = segue.identifier else { return  }
         
         if identifier == .showFolder {
-           
+            guard let folderVC = segue.destination as? FolderViewController else { return  }
+            guard let indexPath = tableView.indexPathForSelectedRow else { return  }
+            guard let folder = folder.contents[indexPath.row] as? Folder else { return }
+            folderVC.folder = folder
         }
         else if identifier == .showPlayer{
-           
+            guard let playVc = (segue.destination as? UINavigationController)?.topViewController as? PlayViewController else { return  }
+            guard let indexPath = tableView.indexPathForSelectedRow else { return  }
+            guard let recording = folder.contents[indexPath.row] as? Recording else { return }
+            playVc.recording = recording
         }
         else if identifier == .showRecorder{
             guard let recordVc = segue.destination as? RecordViewController else { return  }

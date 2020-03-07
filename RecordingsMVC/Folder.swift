@@ -42,6 +42,13 @@ class Folder: Item, Codable {
         store?.save(item, userInfo: userInfo)
     }
     
+    /// 重新排序
+    func reSort(changedItem: Item) -> (oldIndex:Int, newIndex: Int){
+        let oldIndex = contents.firstIndex(where: { $0 === changedItem })!
+        contents.sort { $0.name < $1.name }
+        let newIndex = contents.firstIndex(where: { $0 === changedItem })!
+        return (oldIndex, newIndex)
+    }
     
     // MARK: --- 序列化 ---
     enum FolderKeys: CodingKey { case name, uuid, contents }

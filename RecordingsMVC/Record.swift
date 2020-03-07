@@ -12,6 +12,10 @@ class Recording: Item, Codable {
         super.init(name: name, uuid: uuid)
     }
     
+    var fileURL: URL? {
+        return store?.fileURL(self)
+    }
+    
     //MARK: --- logic ---
     //Recording和Folder 分别重写父类的 deleted 方法
     override func deleted() {
