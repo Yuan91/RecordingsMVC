@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8115E8A924149D81006364AA /* FolderViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8115E8A824149D81006364AA /* FolderViewControllerDataSource.swift */; };
 		8162F7A42408C46E00C1F8BA /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162F7A32408C46E00C1F8BA /* RecordViewController.swift */; };
 		816DBB3923EBC36F006F883A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816DBB3823EBC36F006F883A /* AppDelegate.swift */; };
 		816DBB4023EBC36F006F883A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816DBB3E23EBC36F006F883A /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8115E8A824149D81006364AA /* FolderViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewControllerDataSource.swift; sourceTree = "<group>"; };
 		8162F7A32408C46E00C1F8BA /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		816DBB3523EBC36F006F883A /* RecordingsMVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordingsMVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		816DBB3823EBC36F006F883A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				816DBB5D23F3A75D006F883A /* FolderViewController.swift */,
 				816DBB5F23F3A8DA006F883A /* PlayViewController.swift */,
 				8162F7A32408C46E00C1F8BA /* RecordViewController.swift */,
+				8115E8A824149D81006364AA /* FolderViewControllerDataSource.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				8162F7A42408C46E00C1F8BA /* RecordViewController.swift in Sources */,
 				817788AB240AADE2001DF3FA /* Item.swift in Sources */,
 				817788A5240A6475001DF3FA /* Player.swift in Sources */,
+				8115E8A924149D81006364AA /* FolderViewControllerDataSource.swift in Sources */,
 				817788A1240A3A9D001DF3FA /* Recorder.swift in Sources */,
 				816DBB3923EBC36F006F883A /* AppDelegate.swift in Sources */,
 			);

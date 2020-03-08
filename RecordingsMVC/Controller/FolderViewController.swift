@@ -30,11 +30,15 @@ class FolderViewController: UITableViewController {
         }
     }
     
+    lazy var dataSource = FolderViewControllerDataSource(folder)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftItemsSupplementBackButton = true
         editButtonItem.tintColor = .darkGray
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        tableView.dataSource = dataSource
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleChangeNotification(_:)),
@@ -91,36 +95,5 @@ class FolderViewController: UITableViewController {
         //反选
         guard let indexPath = tableView.indexPathForSelectedRow else { return  }
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  folder.contents.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = folder.contents[indexPath.row]
-        let identifier = item.isFolder ? "FolderCell" : "RecordingCell"
-        let icon = item.isFolder ? "📂" : "🔊"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = icon + item.name
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let item = folder.contents[indexPath.row]
-        folder.deleteItem(item)
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
 }
