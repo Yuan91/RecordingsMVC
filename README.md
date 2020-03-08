@@ -2,8 +2,11 @@
 1.本项目完成`objc.io`《App架构--使用Swift进行iOS架构》中以MVC实现录音App的部分
 
 2.项目由共有三个release版本。
+
 V1.0版本：按照自己对MVC的理解实现
+
 V2.0版本：参考书籍实现方式，重构代码，优化了Model层的代码
+
 V3.0版本：抽象`FolderViewController`中`UITableviewDataSource`到`FolderViewControllerDataSource`，来减轻`ViewController`负担
 
 3.实现效果
@@ -24,6 +27,7 @@ V3.0版本：抽象`FolderViewController`中`UITableviewDataSource`到`FolderVie
  ②`Controller`调用`Model`层相关方法 
  ③`Model`层完成更改发送通知 
  ④`Controller`接收通知更新UI 这就是最标准的处理
+ 
 需要注意的是对`Model`改变的行为和`View`层级的变化不应该发生的同一函数中，应该由第四步的观察者模式来实现。因为`Model`层变更可能会失败，或者数据可能以其他方式更改，`Controller`不应该预设变更的结果
 
 # 对于Model层的思考
